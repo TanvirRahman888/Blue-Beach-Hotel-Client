@@ -62,9 +62,9 @@ const Login = () => {
     }
 
     return (
-        <div className="flex flex-col-reverse md:flex-row gap-5 p-5">
-            <div className="border md:w-1/2 p-5">
-                <div className="p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800 md:w-1/2 bg-slate-100 mx-auto my-32">
+        <div className="flex flex-col md:flex-row gap-5 p-5">
+            <div className="border md:w-1/2 p-5 rounded-2xl shadow-lg">
+                <div className="p-3 rounded-xl dark:bg-gray-50 dark:text-gray-800 md:w-2/3 bg-slate-100 mx-auto my-32">
                     <h1 className="text-2xl font-bold text-center">Login</h1>
                     <form onSubmit={handelLogInForm} className="space-y-6">
                         <div className="space-y-1 text-sm">
@@ -99,15 +99,14 @@ const Login = () => {
                         </button>
                     </div>
                     <p className="text-center sm:px-6 dark:text-gray-600">Do not have an account?
-                        <Link to={'/register'} className="underline dark:text-gray-800 ml-3 btn btn-primary">Register</Link>
+                        <Link to={'/register'} className="underline dark:text-gray-800 ml-3 link">Register</Link>
                     </p>
                 </div>
             </div>
 
 
-            <div className="border md:w-1/2 p-5">
-                <img src="https://img.freepik.com/free-vector/man-sitting-desk-unlocking-computer-computer-settings-login-flat-illustration_74855-20645.jpg" alt="" className="w-fu
-                " />
+            <div className="border md:w-1/2 p-5 rounded-2xl shadow-lg flex items-center justify-center">
+                <img src="https://img.freepik.com/free-vector/man-sitting-desk-unlocking-computer-computer-settings-login-flat-illustration_74855-20645.jpg" alt="" className="w-full" />
             </div>
         </div>
     );
