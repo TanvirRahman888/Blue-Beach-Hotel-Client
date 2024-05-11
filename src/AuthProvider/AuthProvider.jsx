@@ -1,21 +1,23 @@
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
-import { createContext, useState } from "react";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
 import app from "../Firebase/Firebase.config";
-import { GoogleAuthProvider } from "firebase/auth/cordova";
+import { GoogleAuthProvider } from "firebase/auth";
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({children}) => {
 
-    const createUser = (email, password) => {
-        setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password);
-    }
-
     const auth = getAuth(app);
     const [user, setUser] = useState(null)
     const [loading, setLoading]=useState(true)
+
+
+    const createUser = (email, password) => {
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth, email, password);
+    } 
+
     const logIn = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
@@ -30,8 +32,25 @@ const AuthProvider = ({children}) => {
             photoURL: photo
         })
     }
+    const logOut = () => {
+        setLoading(true);
+        return signOut(auth)
+    }
+
+    useEffect(() => {
+        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+            console.log("User on the On Auth State Change", currentUser);
+            setUser(currentUser);
+            setLoading(false);
+        });
+        return () => {
+            unSubscribe();
+        }
+    }, [])
 
     const authInfo = {
+        user,
+        logOut,
         createUser,
         logIn,
         logInWithGoogle,
