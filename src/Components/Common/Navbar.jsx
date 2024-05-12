@@ -57,12 +57,12 @@ const Navbar = () => {
                         <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
-                                    <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                    <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
                                 </div>
                             </div>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><a>{user.displayName}</a></li>
-                                <li><Link to={'/UpdateProfile'}>Update Profile</Link></li>
+                                <li><a onClick={() => document.getElementById('my_modal_5').showModal()}>{user?.displayName}</a></li>
+                                <li><Link to={'/updateprofile'}>Update Profile</Link></li>
                                 <li><Link onClick={handelLogOut}> <a className="">Log Out</a> </Link></li>
                                 <li><Link>My Bookings</Link></li>
                             </ul>
@@ -71,6 +71,23 @@ const Navbar = () => {
                         :
                         <Link to={'/login'}> <a className="btn btn-success font-bold text-xl animate__animated animate__swing ">Log in</a> </Link>
                 }
+                {/* <button className="btn" onClick={() => document.getElementById('my_modal_5').showModal()}>open modal</button> */}
+                <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                    <div className="modal-box">
+                        <h3 className="font-bold text-lg">My Profile</h3>
+                        <p className="py-4"> <span className="font-bold">Name: </span>{user?.displayName}</p>
+                        <p className="py-4"><span className="font-bold">Email: </span>{user?.email}</p>
+                        <p className="py-4"><span className="font-bold">Registered: </span>{user?.metadata?.creationTime}</p>
+                        <p className="py-4"><span className="font-bold">Login Time: </span>{user?.metadata?.lastSignInTime}</p>
+                        <img src={user?.photoURL} className="w-20" alt="" />
+                        <div className="modal-action">
+                            <form method="dialog" className="mx-auto">
+                                {/* if there is a button in form, it will close the modal */}
+                                <button className="btn btn-outline btn-primary">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </dialog>
 
 
             </div>
