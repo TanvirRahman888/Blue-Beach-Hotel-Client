@@ -4,8 +4,12 @@ import Login from "../Login/Login";
 import Home from "../Pages/Home";
 import Register from "../Login/Register";
 import UpdateProfile from "../Login/UpdateProfile";
+import RoomDetails from "../Pages/FeatureRooms/RoomDetails";
+import BookRoom from "../Pages/FeatureRooms/BookRoom";
+
 
 const router = createBrowserRouter([
+    
     {
       path: "/",
       element: <Root></Root>,
@@ -27,8 +31,13 @@ const router = createBrowserRouter([
             element:<UpdateProfile></UpdateProfile>
         },
         {   
-            path:'/roomdetails/:id}',
-            element:<UpdateProfile></UpdateProfile>
+            path:'/roomdetails/:id',
+            element:<RoomDetails></RoomDetails>,
+            loader:({params})=>fetch(`${import.meta.env.VITE_DOMAIN}/featurerooms/${params.id}`)
+        },
+        {   
+            path:'/bookroom',
+            element:<BookRoom></BookRoom>
         },
       ]
     },

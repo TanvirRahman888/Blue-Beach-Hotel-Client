@@ -13,7 +13,7 @@ const Room = ({room}) => {
             <div className="flex justify-between"><p><span className="font-bold">Cost:</span> {pricePerNight}$</p> <p><span className="font-bold">Room Size:</span> {roomSize}</p></div>
             <p><span className="font-bold">Offers:</span> {specialOffers || "N/A"} </p>
             <p><span className="font-bold">Availability:</span> {availability}</p>
-            <button className="btn btn-outline bg-gradient-to-r from-blue-400 to-blue-300 hover:from-blue-300 hover:to-blue-400"><Link to={`/roomdetails/${_id}`}>View Details</Link></button>
+            <Link to={`/roomdetails/${_id}`}><button className="btn btn-outline bg-gradient-to-r from-blue-400 to-blue-300 hover:from-blue-300 hover:to-blue-400">View Details</button></Link>
         </div>
     );
 };
