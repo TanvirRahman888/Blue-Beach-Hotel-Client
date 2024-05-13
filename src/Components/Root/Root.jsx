@@ -4,7 +4,7 @@ import Footer from "../Common/Footer";
 
 const Root = () => {
     return (
-        <div className="container px-2 mx-auto">
+        <div className="px-[10%] mx-auto bg-gradient-to-r from-blue-400 to-blue-300">
             <Navbar></Navbar>
             <Outlet></Outlet>
             

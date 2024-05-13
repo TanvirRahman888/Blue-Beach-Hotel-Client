@@ -6,6 +6,8 @@ import Register from "../Login/Register";
 import UpdateProfile from "../Login/UpdateProfile";
 import RoomDetails from "../Pages/FeatureRooms/RoomDetails";
 import BookRoom from "../Pages/FeatureRooms/BookRoom";
+import AllRooms from "../Pages/AllRooms/AllRooms";
+import MyBooking from "../Pages/MyBooking/MyBooking";
 
 
 const router = createBrowserRouter([
@@ -31,13 +33,24 @@ const router = createBrowserRouter([
             element:<UpdateProfile></UpdateProfile>
         },
         {   
-            path:'/roomdetails/:id',
-            element:<RoomDetails></RoomDetails>,
-            loader:({params})=>fetch(`${import.meta.env.VITE_DOMAIN}/featurerooms/${params.id}`)
+            path:'/allrooms',
+            element:<AllRooms></AllRooms>,
+            loader:()=>fetch(`${import.meta.env.VITE_DOMAIN}/allrooms`)
         },
         {   
-            path:'/bookroom',
-            element:<BookRoom></BookRoom>
+            path:'/roomdetails/:id',
+            element:<RoomDetails></RoomDetails>,
+            loader:({params})=>fetch(`${import.meta.env.VITE_DOMAIN}/allrooms/${params.id}`)
+        },
+        {   
+            path:'/bookroom/:id',
+            element:<BookRoom></BookRoom>,
+            loader:({params})=>fetch(`${import.meta.env.VITE_DOMAIN}/bookroom/${params.id}`)
+        },
+        {   
+            path:'/mybooking/:email',
+            element:<MyBooking></MyBooking>,
+            loader:({params})=>fetch(`${import.meta.env.VITE_DOMAIN}/bookings/${params.email}`)
         },
       ]
     },

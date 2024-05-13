@@ -29,12 +29,12 @@ const Navbar = () => {
     const NavItems = <>
         <li><NavLink to={"/"}>Home</NavLink></li>
         <li><NavLink to={"/allrooms"}>All Rooms</NavLink></li>
-        <li><NavLink to={"/mybooking"}>My Bookings</NavLink></li>
+        <li><NavLink to={`/mybooking/${user?.email}`}>My Bookings</NavLink></li>
         <li><NavLink to={"/about"}>About</NavLink></li>
         <li><NavLink to={"/contact"}>Contact</NavLink></li>
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-gradient-to-r from-blue-400 to-blue-300">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -47,7 +47,7 @@ const Navbar = () => {
                 <a className="text-2xl font-bold text-blue-700 italic">Blue Beach Hotel</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 text-xl font-bold">
                     {NavItems}
                 </ul>
             </div>
