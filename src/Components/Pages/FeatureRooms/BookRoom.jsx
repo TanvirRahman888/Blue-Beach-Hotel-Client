@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const BookRoom = () => {
     const {apiLink}=useContext(AuthContext)
@@ -48,6 +49,7 @@ const BookRoom = () => {
     }
     return (
         <div className="card shrink-0 w-full shadow-2xl bg-base-100 ">
+            <Helmet><title>Travel with Tanvir | Book Room</title></Helmet>
             <form onSubmit={handelBook} className="card-body grid grid-cols-1 md:grid-cols-2">
                 <div className="form-control">
                     <label className="label">

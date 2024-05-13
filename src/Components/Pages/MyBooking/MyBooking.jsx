@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const MyBooking = () => {
     const loadedList = useLoaderData();
@@ -42,6 +43,7 @@ const MyBooking = () => {
     }
     return (
         <div>
+            <Helmet><title>Travel with Tanvir | My Booking</title></Helmet>
             <h2>MyBooking {myBooking.length}</h2>
             <div className="overflow-x-auto">
                 <table className="table border-2">

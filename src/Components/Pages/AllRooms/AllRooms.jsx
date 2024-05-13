@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Room from "../FeatureRooms/Room";
 import { useContext } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 
 const AllRooms = () => {
@@ -17,6 +18,7 @@ const AllRooms = () => {
       }
     return (
         <div>
+            <Helmet><title>Travel with Tanvir | All Room</title></Helmet>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-5 bg-blue-100 rounded-2xl">
                 {
                     allRooms.map(room => <Room key={room._id} room={room}></Room>)

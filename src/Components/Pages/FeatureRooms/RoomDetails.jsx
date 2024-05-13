@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link, useLoaderData } from "react-router-dom";
@@ -9,6 +10,7 @@ const RoomDetails = () => {
 
     return (
         <div className="card md:w-2/3 my-7 bg-base-100 shadow-xl mx-auto">
+            <Helmet><title>Travel with Tanvir | Room Details</title></Helmet>
             <figure><Carousel
                 autoPlay={true}
                 stopOnHover={true}
