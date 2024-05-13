@@ -1,15 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const MyBooking = () => {
-    const myBooking = useLoaderData();
-    const {apiLink}=useContext(AuthContext);
+    const loadedList = useLoaderData();
+    const [myBooking, setMyBooking] = useState(loadedList)
+    const { apiLink } = useContext(AuthContext);
     //  const {roomDescription, from, pricePerNight, to, child, adult}=myBooking;
     console.log(myBooking);
-    const handelCancelBooking=(_id)=>{
-        console.log("Handel Cancel ID",_id);
+    const handelCancelBooking = (_id) => {
+        console.log("Handel Cancel ID", _id);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -18,24 +19,26 @@ const MyBooking = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
-              
-            fetch(`${apiLink}/bookings/${_id}`,{
-                method: 'DELETE'
-            })
-            .then(res=>res.json())
-            .then(data=>{
-                if (data.deletedCount>0) {
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
-                }
-            })
+
+                fetch(`${apiLink}/bookings/${_id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            setMyBooking(prevBooking => prevBooking.filter(item => item._id !== _id));
+
+                            Swal.fire({
+                                title: "Cancel!",
+                                text: "Your Booking Room is Canceled.",
+                                icon: "success"
+                            });
+                        }
+                    })
             }
-          });
+        });
     }
     return (
         <div>
@@ -55,22 +58,8 @@ const MyBooking = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* row 1 */}
-                        {/* <tr>
-                            <td><div className="font-bold">{roomDescription}</div></td>
-                            <td><div className="font-bold">{adult}</div></td>
-                            <td><div className="font-bold">{child}</div></td>
-                            <td><div className="font-bold">{from}</div></td>
-                            <td><div className="font-bold">{to}</div></td>
-                            <td><div className="font-bold">{pricePerNight}</div></td>
-                            <td>
-                                <button className="btn btn-ghost">Edit Booking</button>
-                                <button className="btn btn-ghost">Cancel Booking</button>
-                            </td>
-                        </tr> */}
-                        {/* row 2 */}
                         {
-                            myBooking.map(list=><tr key={list._id} className="text-center">
+                            myBooking.map(list => <tr key={list._id} className="text-center">
                                 <td><div className="font-bold">{list.roomDescription}</div></td>
                                 <td><div className="font-bold">{list.adult}</div></td>
                                 <td><div className="font-bold">{list.child}</div></td>
@@ -78,7 +67,7 @@ const MyBooking = () => {
                                 <td><div className="font-bold">{list.to}</div></td>
                                 <td><div className="font-bold">{list.pricePerNight}</div></td>
                                 <td className="">
-                                    <button onClick={()=>handelCancelBooking(list._id)} className="btn btn-outline">Cancel Booking</button>
+                                    <button onClick={() => handelCancelBooking(list._id)} className="btn btn-outline">Cancel Booking</button>
                                 </td>
                             </tr>)
                         }
