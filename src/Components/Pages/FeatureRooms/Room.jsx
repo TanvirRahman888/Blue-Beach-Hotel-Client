@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const Room = ({room}) => {
-    const {apiLink}=useContext(AuthContext)
+    
     console.log(room);
     const {availability, description,images,pricePerNight, reviews, roomSize, specialOffers, _id }=room;
     return (

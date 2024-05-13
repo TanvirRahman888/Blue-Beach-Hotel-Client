@@ -7,7 +7,6 @@ const Home = () => {
     return (
         <>
             <Slider></Slider>
-            <Map></Map>
             <FeatureRooms></FeatureRooms>
             <MyMap></MyMap>
         </>

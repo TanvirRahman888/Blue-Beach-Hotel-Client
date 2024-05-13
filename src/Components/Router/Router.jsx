@@ -8,6 +8,7 @@ import RoomDetails from "../Pages/FeatureRooms/RoomDetails";
 import BookRoom from "../Pages/FeatureRooms/BookRoom";
 import AllRooms from "../Pages/AllRooms/AllRooms";
 import MyBooking from "../Pages/MyBooking/MyBooking";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
         },
         {   
             path:'/updateprofile',
-            element:<UpdateProfile></UpdateProfile>
+            element:<PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>
         },
         {   
             path:'/allrooms',
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
         },
         {   
             path:'/mybooking/:email',
-            element:<MyBooking></MyBooking>,
+            element:<PrivateRoute><MyBooking></MyBooking></PrivateRoute>,
             loader:({params})=>fetch(`${import.meta.env.VITE_DOMAIN}/bookings/${params.email}`)
         },
       ]

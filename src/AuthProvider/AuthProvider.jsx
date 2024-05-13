@@ -7,13 +7,15 @@ export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({children}) => {
-
-
+    
     const apiLink=import.meta.env.VITE_DOMAIN;
     console.log("API Link: ",apiLink);
     const auth = getAuth(app);
     const [user, setUser] = useState(null)
     const [loading, setLoading]=useState(true)
+
+    
+    
 
 
     const createUser = (email, password) => {
