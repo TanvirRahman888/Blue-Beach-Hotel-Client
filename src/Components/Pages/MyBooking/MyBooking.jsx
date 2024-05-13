@@ -1,9 +1,42 @@
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const MyBooking = () => {
     const myBooking = useLoaderData();
+    const {apiLink}=useContext(AuthContext);
     //  const {roomDescription, from, pricePerNight, to, child, adult}=myBooking;
     console.log(myBooking);
+    const handelCancelBooking=(_id)=>{
+        console.log("Handel Cancel ID",_id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              
+            fetch(`${apiLink}/bookings/${_id}`,{
+                method: 'DELETE'
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                if (data.deletedCount>0) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                }
+            })
+            }
+          });
+    }
     return (
         <div>
             <h2>MyBooking {myBooking.length}</h2>
@@ -44,9 +77,8 @@ const MyBooking = () => {
                                 <td><div className="font-bold">{list.from}</div></td>
                                 <td><div className="font-bold">{list.to}</div></td>
                                 <td><div className="font-bold">{list.pricePerNight}</div></td>
-                                <td className="space-x-3">
-                                    <button className="btn btn-outline">Edit Booking</button>
-                                    <button className="btn btn-outline">Cancel Booking</button>
+                                <td className="">
+                                    <button onClick={()=>handelCancelBooking(list._id)} className="btn btn-outline">Cancel Booking</button>
                                 </td>
                             </tr>)
                         }
