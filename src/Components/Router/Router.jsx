@@ -9,6 +9,7 @@ import BookRoom from "../Pages/FeatureRooms/BookRoom";
 import AllRooms from "../Pages/AllRooms/AllRooms";
 import MyBooking from "../Pages/MyBooking/MyBooking";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 
 const router = createBrowserRouter([
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
     {
       path: "/",
       element: <Root></Root>,
+      errorElement:<ErrorPage></ErrorPage>,
       children:[
         {   
             path:'/',

@@ -26,7 +26,7 @@ const Root = () => {
                             </label>
                             <form onSubmit={closeModal}>
                                 <label className="input input-bordered flex items-center gap-2">
-                                    <input type="text" required className="grow" placeholder="Search" />
+                                    <input type="text" required className="grow" placeholder="Enter your email address" />
                                     <button className="btn btn-sm btn-outline btn-primary"> Subscribe</button>
                                 </label>
                             </form>
