@@ -77,10 +77,10 @@ const MyBooking = () => {
                                         headers: {
                                             'content-type': 'application/json'
                                         },
-                                        body: JSON.stringify({ availability: `false ` })
+                                        body: JSON.stringify({ availability: false})
                                     })
                                         .then(res => res.json())
-                                        .then(data => {console.log(data);})
+                                        .then(data => {console.log(data)})
                                 });
                         }
                     })
