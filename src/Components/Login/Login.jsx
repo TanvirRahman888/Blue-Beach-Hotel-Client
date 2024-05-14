@@ -3,17 +3,17 @@ import Swal from 'sweetalert2'
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import axios from "axios";
 
 
 const Login = () => {
 
-    const {logIn,logInWithGoogle}=useContext(AuthContext)
+    const {logIn,logInWithGoogle, apiLink}=useContext(AuthContext)
     const [showPassword, setShowPassword] = useState(false);
     const location =useLocation();
     const navigate =useNavigate();
     const handelLogInForm = (e) => {
         e.preventDefault();
-        console.log("object");
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log(email, password);
@@ -21,6 +21,13 @@ const Login = () => {
         logIn(email, password)
             .then((result) => {
                 console.log(result.user, "Log in Page");
+                const currentUser={email}
+
+                axios.post(`${apiLink}/jwt`,currentUser)
+                .then(res=>{
+                    console.log(res.data);
+                })
+                
                 // alert("Log in Successful");
                 Swal.fire({
                     position: "top-end",
@@ -29,7 +36,9 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                   });
-                navigate(location?.state ? location.state : "/" );
+                // navigate(location?.state ? location.state : "/" );
+                // get access token
+
 
             })
             .catch((error) => {
@@ -48,7 +57,14 @@ const Login = () => {
     const handelGoogleLogIn = () => {
         logInWithGoogle()
             .then(result => {
-                console.log(result.user);
+                console.log(result.user.email);
+                const email=(result.user.email);
+                const currentUser={email}
+
+                axios.post(`${apiLink}/jwt`,currentUser)
+                .then(res=>{
+                    console.log(res.data);
+                })
                 // alert("Log in with Google");
                 Swal.fire({
                     position: "top-end",
@@ -57,7 +73,8 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                   });
-                navigate(location?.state ? location.state : "/" );
+                // navigate(location?.state ? location.state : "/" );
+                
             })
     }
 
