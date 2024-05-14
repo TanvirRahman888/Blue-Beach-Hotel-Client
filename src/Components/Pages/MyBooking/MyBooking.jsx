@@ -8,7 +8,7 @@ const MyBooking = () => {
     const loadedList = useLoaderData();
     const [myBooking, setMyBooking] = useState(loadedList)
     const { apiLink } = useContext(AuthContext);
-    
+
     console.log(myBooking);
     const handelCancelBooking = (_id) => {
         console.log("Handel Cancel ID", _id);
@@ -42,8 +42,8 @@ const MyBooking = () => {
         });
     }
 
-    const handelConfirmBooking = (id) => {
-        console.log("Handel Confirm ID", id);
+    const handelConfirmBooking = (id, roomID) => {
+        console.log("Handel Confirm ID", id, roomID);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -60,24 +60,28 @@ const MyBooking = () => {
                     headers: {
                         'content-type': 'application/json'
                     },
-                    body:JSON.stringify({status: 'confirm'})
+                    body: JSON.stringify({ status: 'confirm' })
                 })
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
                         if (data.modifiedCount > 0) {
-                            // const remaining=myBooking.filter((item => item._id !== id));
-                            // const confirmed=myBooking.find((item => item._id === id));
-                            // confirmed.status="Confirmed";
-                            // const newMyBookings=[confirmed, ...remaining ]
-                            // setMyBooking(newMyBookings)
-
-
-                            Swal.fire({
-                                title: "Confirm!",
-                                text: "Your Booking Room is Confirm.",
-                                icon: "success"
-                            });
+                            alert("booking confirmed")
+                            fetch(`${apiLink}/confirmbooking/${roomID}`)
+                                .then(res => res.json())
+                                .then(data => {
+                                    const newId=data._id
+                                    console.log(data._id)
+                                    fetch(`${apiLink}/confirmbooking/${newId}`, {
+                                        method: 'PATCH',
+                                        headers: {
+                                            'content-type': 'application/json'
+                                        },
+                                        body: JSON.stringify({ availability: `false ` })
+                                    })
+                                        .then(res => res.json())
+                                        .then(data => {console.log(data);})
+                                });
                         }
                     })
             }
@@ -112,7 +116,7 @@ const MyBooking = () => {
                                 <td><div className="font-bold">{list.pricePerNight}</div></td>
                                 <td className="space-x-2">
                                     <button onClick={() => handelCancelBooking(list._id)} className="btn btn-sm btn-outline">Cancel Booking</button>
-                                    <button onClick={() => handelConfirmBooking(list._id)} className="btn btn-sm btn-outline">Confirm Booking</button>
+                                    <button onClick={() => handelConfirmBooking(list._id, list.roomID)} className="btn btn-sm btn-outline">Confirm Booking</button>
                                 </td>
                             </tr>)
                         }
