@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
 
 const BookRoom = () => {
     const {apiLink}=useContext(AuthContext)
@@ -45,6 +46,14 @@ const BookRoom = () => {
         .then(res=>res.json())
         .then(data=>{
             console.log(data);
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your Rooming is Listed in My Booking page.",
+                text: "Please Confirm your booking",
+                showConfirmButton: false,
+                timer: 1500
+              });
         })
     }
     return (
@@ -88,7 +97,7 @@ const BookRoom = () => {
                     <input type="number" placeholder="Number of Child Guest" name="numOfChild" defaultValue={0} className="input input-bordered" required />
                 </div>
                 <div className="form-control mt-6 col-span-full">
-                    <button className="btn btn-primary">Book This Room</button>
+                    <button className="btn btn-primary">Want to Book This Room</button>
                 </div>
             </form>
         </div>

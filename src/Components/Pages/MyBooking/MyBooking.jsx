@@ -10,8 +10,8 @@ const MyBooking = () => {
     const { apiLink } = useContext(AuthContext);
 
     console.log(myBooking);
-    const handelCancelBooking = (_id) => {
-        console.log("Handel Cancel ID", _id);
+    const handelCancelBooking = (_id,roomID) => {
+        console.log("Handel Cancel ID", _id, roomID);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -36,6 +36,28 @@ const MyBooking = () => {
                                 text: "Your Booking Room is Canceled.",
                                 icon: "success"
                             });
+                            fetch(`${apiLink}/confirmbooking/${roomID}`)
+                                .then(res => res.json())
+                                .then(data => {
+                                    const newId = data._id
+                                    console.log(data._id)
+                                    fetch(`${apiLink}/confirmbooking/${newId}`, {
+                                        method: 'PATCH',
+                                        headers: {
+                                            'content-type': 'application/json'
+                                        },
+                                        body: JSON.stringify({ availability: true })
+                                    })
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            console.log(data);
+                                            Swal.fire({
+                                                title: "Confirmed!",
+                                                text: "Your Room marked as Available.",
+                                                icon: "success"
+                                            });
+                                        })
+                                });
                         }
                     })
             }
@@ -51,7 +73,7 @@ const MyBooking = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Confirm it!"
+            confirmButtonText: "Yes, Confirm Booking!"
         }).then((result) => {
             if (result.isConfirmed) {
 
@@ -66,21 +88,33 @@ const MyBooking = () => {
                     .then(data => {
                         console.log(data);
                         if (data.modifiedCount > 0) {
-                            alert("booking confirmed")
+                            Swal.fire({
+                                title: "Confirmed!",
+                                text: "Booking Confirmed.",
+                                timer: 4000,
+                                icon: "success"
+                            });
                             fetch(`${apiLink}/confirmbooking/${roomID}`)
                                 .then(res => res.json())
                                 .then(data => {
-                                    const newId=data._id
+                                    const newId = data._id
                                     console.log(data._id)
                                     fetch(`${apiLink}/confirmbooking/${newId}`, {
                                         method: 'PATCH',
                                         headers: {
                                             'content-type': 'application/json'
                                         },
-                                        body: JSON.stringify({ availability: false})
+                                        body: JSON.stringify({ availability: false })
                                     })
                                         .then(res => res.json())
-                                        .then(data => {console.log(data)})
+                                        .then(data => {
+                                            console.log(data);
+                                            Swal.fire({
+                                                title: "Confirmed!",
+                                                text: "Your Room marked as Not Available.",
+                                                icon: "success"
+                                            });
+                                        })
                                 });
                         }
                     })
@@ -115,7 +149,7 @@ const MyBooking = () => {
                                 <td><div className="font-bold">{list.to}</div></td>
                                 <td><div className="font-bold">{list.pricePerNight}</div></td>
                                 <td className="space-x-2">
-                                    <button onClick={() => handelCancelBooking(list._id)} className="btn btn-sm btn-outline">Cancel Booking</button>
+                                    <button onClick={() => handelCancelBooking(list._id, list.roomID)} className="btn btn-sm btn-outline">Cancel Booking</button>
                                     <button onClick={() => handelConfirmBooking(list._id, list.roomID)} className="btn btn-sm btn-outline">Confirm Booking</button>
                                 </td>
                             </tr>)
