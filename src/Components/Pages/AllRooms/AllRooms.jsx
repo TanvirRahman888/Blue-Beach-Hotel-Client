@@ -31,7 +31,7 @@ const AllRooms = () => {
     }
     return (
         <div className="bg-blue-100 rounded-2xl  min-h-svh ">
-            <Helmet><title>Travel with Tanvir | All Room</title></Helmet>
+            <Helmet><title>Blue Beach Hotel | All Room</title></Helmet>
             <div className="flex justify-end">
             <button onClick={handelSortRoom}>{sort? <button className="btn btn-outline bg-gradient-to-r from-blue-400 to-blue-300 hover:from-blue-300 hover:to-blue-400 m-4">Sort Available by Cost</button>:<button className="btn btn-outline bg-gradient-to-r from-red-400 to-yellow-300 hover:from-yellow-300 hover:to-red-400 m-4">View All Rooms</button>}</button>
             </div>

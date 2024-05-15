@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const ErrorPage = () => {
     return (
         <div>
-            <Helmet><title>Travel with Tanvir | Log in</title></Helmet>
+            <Helmet><title>Blue Beach Hotel | Log in</title></Helmet>
 
             <Link to={'/'}>
                 <img src="https://freefrontend.com/assets/img/html-funny-404-pages/CodePen-404-Page.gif" className="w-full h-screen" alt="" />

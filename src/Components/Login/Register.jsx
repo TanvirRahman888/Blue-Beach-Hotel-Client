@@ -62,7 +62,7 @@ const Register = () => {
     }
     return (
         <div className="flex flex-col md:flex-row-reverse gap-5 p-5">
-            <Helmet><title>Travel with Tanvir | Register</title></Helmet>
+            <Helmet><title>Blue Beach Hotel | Register</title></Helmet>
             <div className="border md:w-1/2 p-5 rounded-2xl shadow-lg">
                 <div className="p-3 rounded-xl dark:bg-gray-50 dark:text-gray-800 md:w-2/3 bg-slate-100 mx-auto my-32">
                     <h1 className="text-2xl font-bold text-center">Register</h1>

@@ -36,7 +36,7 @@ const UpdateProfile = () => {
     }
     return (
         <div>
-            <Helmet><title>Travel with Tanvir | Update Profile</title></Helmet>
+            <Helmet><title>Blue Beach Hotel | Update Profile</title></Helmet>
             <div className="max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800 w-1/2 bg-slate-100 mx-auto my-32">
                 <h2 className="text-2xl text-center m-5">Update Profile</h2>
                 <form onSubmit={handelUpdateProfile} className="space-y-6">

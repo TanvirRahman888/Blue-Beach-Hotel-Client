@@ -7,6 +7,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { Helmet } from "react-helmet";
 import AboutUs from "../Root/AboutUs";
 import ContactUs from "./FeatureRooms/ContactUs";
+import Review from "../Root/Review";
 
 const Home = () => {
     const { loading } = useContext(AuthContext)
@@ -20,10 +21,11 @@ const Home = () => {
     }
     return (
         <>
-            <Helmet><title>Travel with Tanvir</title></Helmet>
+            <Helmet><title>Blue Beach Hotel</title></Helmet>
             <Slider></Slider>
             <FeatureRooms></FeatureRooms>
             <AboutUs></AboutUs>
+            <Review></Review>
             <MyMap></MyMap>
             <ContactUs></ContactUs>
         </>

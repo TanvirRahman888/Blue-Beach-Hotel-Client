@@ -69,7 +69,7 @@ const MyBooking = () => {
 
     return (
         <div>
-            <Helmet><title>Travel with Tanvir | My Booking</title></Helmet>
+            <Helmet><title>Blue Beach Hotel | My Booking</title></Helmet>
             <div className="overflow-x-auto min-h-[80svh]">
                 <table className="table border-2">
                     {/* head */}
