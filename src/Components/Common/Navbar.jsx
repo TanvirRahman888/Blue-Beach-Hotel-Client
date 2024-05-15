@@ -30,7 +30,7 @@ const Navbar = () => {
         <li><NavLink to={"/"}>Home</NavLink></li>
         <li><NavLink to={"/allrooms"}>All Rooms</NavLink></li>
         <li><NavLink to={`/mybooking`}>My Bookings</NavLink></li>
-        <li><NavLink to={"/about"}>About</NavLink></li>
+        <li><NavLink to={"/"}>About</NavLink></li>
         <li><NavLink to={"/contact"}>Contact</NavLink></li>
     </>
     return (
@@ -64,7 +64,7 @@ const Navbar = () => {
                                 <li><a onClick={() => document.getElementById('my_modal_5').showModal()}>{user?.displayName}</a></li>
                                 <li><Link to={'/updateprofile'}>Update Profile</Link></li>
                                 <li><Link onClick={handelLogOut}> <a className="">Log Out</a> </Link></li>
-                                <li><Link>My Bookings</Link></li>
+                                <li><Link to={`/mybooking`}>My Bookings</Link></li>
                             </ul>
                         </div>
 

@@ -10,6 +10,7 @@ import AllRooms from "../Pages/AllRooms/AllRooms";
 import MyBooking from "../Pages/MyBooking/MyBooking";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import ContactUs from "../Pages/FeatureRooms/ContactUs";
 
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
         {   
             path:'/register',
             element:<Register></Register>
+        },
+        {   
+            path:'/contact',
+            element:<ContactUs></ContactUs>
         },
         {   
             path:'/updateprofile',

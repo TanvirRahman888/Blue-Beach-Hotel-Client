@@ -67,68 +67,10 @@ const MyBooking = () => {
         });
     }
 
-    // const handelConfirmBooking = (id, roomID) => {
-    //     // console.log("Handel Confirm ID", id, roomID);
-    //     Swal.fire({
-    //         title: "Are you sure?",
-    //         text: "You won't be able to revert this!",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         confirmButtonText: "Yes, Confirm Booking!"
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-
-    //             fetch(`${apiLink}/bookings/${id}`, {
-    //                 method: 'PATCH',
-    //                 headers: {
-    //                     'content-type': 'application/json'
-    //                 },
-    //                 body: JSON.stringify({ status: 'confirm' })
-    //             })
-    //                 .then(res => res.json())
-    //                 .then(data => {
-    //                     // console.log(data);
-    //                     if (data.modifiedCount > 0) {
-    //                         Swal.fire({
-    //                             title: "Confirmed!",
-    //                             text: "Booking Confirmed.",
-    //                             timer: 4000,
-    //                             icon: "success"
-    //                         });
-    //                         fetch(`${apiLink}/confirmbooking/${roomID}`)
-    //                             .then(res => res.json())
-    //                             .then(data => {
-    //                                 const newId = data._id
-    //                                 // console.log(data._id)
-    //                                 fetch(`${apiLink}/confirmbooking/${newId}`, {
-    //                                     method: 'PATCH',
-    //                                     headers: {
-    //                                         'content-type': 'application/json'
-    //                                     },
-    //                                     body: JSON.stringify({ availability: false })
-    //                                 })
-    //                                     .then(res => res.json())
-    //                                     .then(data => {
-    //                                         // console.log(data);
-    //                                         Swal.fire({
-    //                                             title: "Confirmed!",
-    //                                             text: "Your Room marked as Not Available.",
-    //                                             icon: "success"
-    //                                         });
-    //                                     })
-    //                             });
-    //                     }
-    //                 })
-    //         }
-    //     });
-    // }
     return (
         <div>
             <Helmet><title>Travel with Tanvir | My Booking</title></Helmet>
-            <h2>MyBooking {myBooking.length}</h2>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto min-h-[80svh]">
                 <table className="table border-2">
                     {/* head */}
                     <thead>

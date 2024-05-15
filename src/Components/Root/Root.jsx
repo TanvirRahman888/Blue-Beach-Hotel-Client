@@ -3,6 +3,7 @@ import Navbar from "../Common/Navbar";
 import Footer from "../Common/Footer";
 import { useState } from "react";
 
+
 const Root = () => {
     const [modalShown, setModalShown] = useState(true);
     const closeModal = () => {
@@ -10,7 +11,7 @@ const Root = () => {
     };
 
     return (
-        <div className="px-[10%] mx-auto bg-gradient-to-r from-blue-400 to-blue-300" onWheel={() => document.getElementById('my_modal_1').showModal()}>
+        <div className="px-[10%] mx-auto bg-gradient-to-r from-cyan-200  to-blue-100" onWheel={() => document.getElementById('my_modal_1').showModal()}>
             {
                 modalShown && <dialog id="my_modal_1" className="modal">
                     <div className="modal-box">
@@ -33,33 +34,6 @@ const Root = () => {
                         </fieldset>
                     </div>
                 </dialog>
-
-                // <dialog id="my_modal_1" className="modal">
-                //     <div className="modal-box">
-                //         <h3 className="font-bold text-lg">Welcome to Blue Beach Hotel!</h3>
-                //         <p className="py-4">Subscribe to our newsletter for updates, deals, and exclusive offers</p>
-                //         <fieldset className="form-control w-80">
-                //             <label className="label">
-                //                 <span className="label-text">Enter your email address</span>
-                //             </label>
-                //             <form onSubmit={closeModal}>
-                //                 <label className="input input-bordered flex items-center gap-2">
-                //                     <input type="text" required className="grow" placeholder="Search" />
-                //                     <button className="btn btn-sm btn-outline btn-primary"> Subscribe</button>
-                //                 </label>
-                //             </form>
-                //         </fieldset>
-                //         <div className="modal-action">
-                //             <form method="dialog">
-                //                 {/* if there is a button in form, it will close the modal */}
-                //                 <button onClick={closeModal} className="btn">Close</button>
-                //             </form>
-                //         </div>
-                //     </div>
-                // </dialog>
-
-
-
             }
             <Navbar></Navbar>
             <Outlet></Outlet>

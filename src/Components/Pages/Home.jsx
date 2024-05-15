@@ -5,6 +5,8 @@ import Slider from "../Root/Slider";
 import FeatureRooms from "./FeatureRooms/FeatureRooms";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { Helmet } from "react-helmet";
+import AboutUs from "../Root/AboutUs";
+import ContactUs from "./FeatureRooms/ContactUs";
 
 const Home = () => {
     const { loading } = useContext(AuthContext)
@@ -21,7 +23,9 @@ const Home = () => {
             <Helmet><title>Travel with Tanvir</title></Helmet>
             <Slider></Slider>
             <FeatureRooms></FeatureRooms>
+            <AboutUs></AboutUs>
             <MyMap></MyMap>
+            <ContactUs></ContactUs>
         </>
     );
 };
