@@ -1,13 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { Helmet } from "react-helmet";
+import axios from "axios";
 
 const MyBooking = () => {
-    const loadedList = useLoaderData();
-    const [myBooking, setMyBooking] = useState(loadedList)
-    const { apiLink } = useContext(AuthContext);
+    // const loadedList = useLoaderData();
+
+    const {user, apiLink } = useContext(AuthContext);
+    const [myBooking, setMyBooking] = useState([])
+    const url= `${import.meta.env.VITE_DOMAIN}/bookings/${user?.email}`
+    useEffect(()=>{
+        axios.get(url, {withCredentials:true})
+        .then(res=>{
+            setMyBooking(res.data)
+        })
+    },[url])
 
     console.log(myBooking);
     const handelCancelBooking = (_id,roomID) => {

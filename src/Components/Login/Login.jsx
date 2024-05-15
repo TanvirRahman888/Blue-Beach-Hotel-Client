@@ -23,9 +23,12 @@ const Login = () => {
                 console.log(result.user, "Log in Page");
                 const currentUser={email}
 
-                axios.post(`${apiLink}/jwt`,currentUser)
+                axios.post(`${apiLink}/jwt`,currentUser,{withCredentials:true})
                 .then(res=>{
                     console.log(res.data);
+                    if (res.data.success) {
+                        navigate(location?.state ? location.state : "/" );
+                    }
                 })
                 
                 // alert("Log in Successful");
@@ -61,9 +64,12 @@ const Login = () => {
                 const email=(result.user.email);
                 const currentUser={email}
 
-                axios.post(`${apiLink}/jwt`,currentUser)
+                axios.post(`${apiLink}/jwt`,currentUser, {withCredentials:true})
                 .then(res=>{
                     console.log(res.data);
+                    if (res.data.success) {
+                        navigate(location?.state ? location.state : "/" );
+                    }
                 })
                 // alert("Log in with Google");
                 Swal.fire({
