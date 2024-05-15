@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 
@@ -8,7 +8,9 @@ const BookRoom = () => {
     const {apiLink}=useContext(AuthContext)
     const { user } = useContext(AuthContext)
     const bookRoom = useLoaderData()
-    console.log(bookRoom);
+    const navigate = useNavigate();
+
+    // console.log(bookRoom);
     const handelBook = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -45,15 +47,59 @@ const BookRoom = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Your Rooming is Listed in My Booking page.",
-                text: "Please Confirm your booking",
-                showConfirmButton: false,
-                timer: 1500
-              });
+            console.log(data.insertedId);
+            if (data.insertedId) {
+                // Swal.fire({
+                //     position: "top",
+                //     icon: "success",
+                //     title: "Your Rooming is Listed in My Booking page.",
+                //     text: "Please Confirm your booking",
+                //     showConfirmButton: false,
+                //     timer: 1500
+                //   });   
+                  fetch(`${apiLink}/bookings/${data.insertedId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ status: 'confirm' })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data);
+                        if (data.modifiedCount > 0) {
+                            
+                            fetch(`${apiLink}/confirmbooking/${roomID}`)
+                                .then(res => res.json())
+                                .then(data => {
+                                    const newId = data._id
+                                    // console.log(data._id)
+                                    fetch(`${apiLink}/confirmbooking/${newId}`, {
+                                        method: 'PATCH',
+                                        headers: {
+                                            'content-type': 'application/json'
+                                        },
+                                        body: JSON.stringify({ availability: false })
+                                    })
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            form.reset();
+                                            navigate('/allrooms')
+                                            Swal.fire({
+                                                title: "Confirmed!",
+                                                text: "Booking Confirmed.",
+                                                timer: 4000,
+                                                icon: "success"
+                                            });
+                                        })
+                                });
+                        }
+                    })  
+                  
+            
+            }
+
+            
         })
     }
     return (

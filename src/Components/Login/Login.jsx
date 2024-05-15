@@ -16,16 +16,16 @@ const Login = () => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(email, password);
+        // console.log(email, password);
 
         logIn(email, password)
             .then((result) => {
-                console.log(result.user, "Log in Page");
+                // console.log(result.user, "Log in Page");
                 const currentUser={email}
 
                 axios.post(`${apiLink}/jwt`,currentUser,{withCredentials:true})
                 .then(res=>{
-                    console.log(res.data);
+                    // console.log(res.data);
                     if (res.data.success) {
                         navigate(location?.state ? location.state : "/" );
                     }
@@ -60,7 +60,7 @@ const Login = () => {
     const handelGoogleLogIn = () => {
         logInWithGoogle()
             .then(result => {
-                console.log(result.user.email);
+                // console.log(result.user.email);
                 const email=(result.user.email);
                 const currentUser={email}
 

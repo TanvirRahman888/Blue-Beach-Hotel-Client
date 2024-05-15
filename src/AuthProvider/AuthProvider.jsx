@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 import { createContext, useEffect, useState } from "react";
 import app from "../Firebase/Firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
@@ -9,7 +10,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({children}) => {
     
     const apiLink=import.meta.env.VITE_DOMAIN;
-    // console.log("API Link: ",apiLink);
+
     const auth = getAuth(app);
     const [user, setUser] = useState(null)
     const [loading, setLoading]=useState(true)
@@ -43,13 +44,31 @@ const AuthProvider = ({children}) => {
     }
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-            console.log("User on the On Auth State Change", currentUser);
+        const unSubscribe = onAuthStateChanged(auth, currentUser => {
+            // console.log("User on the On Auth State Change", currentUser);
             setUser(currentUser);
             setLoading(false);
+            const userEmail = currentUser?.email || user?.email;
+            const loggedUser = { email: userEmail };
+            if (currentUser) {
+                console.log("User Found")
+                axios.post(`${apiLink}/jwt`, loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log('token response', res.data);
+                    })
+            }
+            else {
+                console.log("User Not Found")
+                axios.post(`${apiLink}/logout`, loggedUser, {
+                    withCredentials: true
+                })
+                    .then(res => {
+                        console.log(res.data);
+                    })
+            }
         });
         return () => {
-            unSubscribe();
+            return unSubscribe();
         }
     }, [])
 

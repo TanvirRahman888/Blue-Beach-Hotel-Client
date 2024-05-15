@@ -33,7 +33,7 @@ const RoomDetails = () => {
                     availability ?
                         <Link to={`/bookroom/${_id}`}><button className="btn btn-outline bg-gradient-to-r from-blue-400 to-blue-300 hover:from-blue-300 hover:to-blue-400">Book Room</button></Link>
                         :
-                        <Link to={"/"}><button className="btn btn-outline bg-gradient-to-r from-blue-400 to-blue-300 hover:from-blue-300 hover:to-blue-400">All</button></Link>
+                        <Link to={"/allrooms"}><button className="btn btn-outline bg-gradient-to-r from-blue-400 to-blue-300 hover:from-blue-300 hover:to-blue-400">All Rooms</button></Link>
                 }
 
             </div>

@@ -13,12 +13,12 @@ const Register = () => {
     const navigate =useNavigate();
     const handelRegisterForm = (e) => {
         e.preventDefault();
-        console.log("object");
+        // console.log("object");
         const email = e.target.email.value;
         const password = e.target.password.value;
         const name = e.target.name.value;
         const photoURL = e.target.photo.value;
-        console.log(name, photoURL, email, password);
+        // console.log(name, photoURL, email, password);
 
         const isValidPassword = (password) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/.test(password);
 
@@ -35,9 +35,9 @@ const Register = () => {
         createUser(email, password)
             .then((result) => {
                 updateUserProfile(name, photoURL)
-                console.log(result.user);
+                // console.log(result.user);
                 navigate(location?.state ? location.state : '/')
-                console.log(result);
+                // console.log(result);
                 Swal.fire({
                     position: "center",
                     icon: "success",
