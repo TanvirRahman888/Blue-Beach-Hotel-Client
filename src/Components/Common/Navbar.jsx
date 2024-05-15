@@ -29,7 +29,7 @@ const Navbar = () => {
     const NavItems = <>
         <li><NavLink to={"/"}>Home</NavLink></li>
         <li><NavLink to={"/allrooms"}>All Rooms</NavLink></li>
-        <li><NavLink to={`/mybooking/${user?.email}`}>My Bookings</NavLink></li>
+        <li><NavLink to={`/mybooking`}>My Bookings</NavLink></li>
         <li><NavLink to={"/about"}>About</NavLink></li>
         <li><NavLink to={"/contact"}>Contact</NavLink></li>
     </>

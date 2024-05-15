@@ -51,7 +51,7 @@ const router = createBrowserRouter([
             loader:({params})=>fetch(`${import.meta.env.VITE_DOMAIN}/bookroom/${params.id}`)
         },
         {   
-            path:'/mybooking/:email',
+            path:'/mybooking',
             element:<PrivateRoute><MyBooking></MyBooking></PrivateRoute>,
             // loader:({params})=>fetch(`${import.meta.env.VITE_DOMAIN}/bookings/${params.email}`)
         },
