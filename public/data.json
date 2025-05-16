@@ -1,0 +1,70 @@
+[
+    {
+      "description": "Deluxe King Suite with Ocean View",
+      "pricePerNight": 250,
+      "roomSize": "500 sq ft",
+      "availability": true,
+      "images": ["room1_img1.jpg", "room1_img2.jpg"],
+      "specialOffers": "Free breakfast included",
+      "reviews": [
+        {
+          "userid": "user123",
+          "rating": 4.5,
+          "comment": "Great view and comfortable stay!"
+        },
+        {
+          "userid": "user456",
+          "rating": 5,
+          "comment": "Absolutely loved this room!"
+        }
+      ]
+    },
+    {
+      "description": "Standard Double Room",
+      "pricePerNight": 120,
+      "roomSize": "300 sq ft",
+      "availability": true,
+      "images": ["room2_img1.jpg", "room2_img2.jpg"],
+      "specialOffers": "",
+      "reviews": "No reviews available"
+    },
+    {
+      "description": "Luxury Villa with Private Pool",
+      "pricePerNight": 500,
+      "roomSize": "800 sq ft",
+      "availability": false,
+      "images": ["room3_img1.jpg", "room3_img2.jpg"],
+      "specialOffers": "10% off for extended stays",
+      "reviews": [
+        {
+          "userid": "user789",
+          "rating": 4,
+          "comment": "Incredible villa, but expensive"
+        }
+      ]
+    },
+    {
+      "description": "Family Suite with Mountain View",
+      "pricePerNight": 300,
+      "roomSize": "600 sq ft",
+      "availability": true,
+      "images": ["room4_img1.jpg", "room4_img2.jpg"],
+      "specialOffers": "50% off for children under 12",
+      "reviews": "No reviews available"
+    },
+    {
+      "description": "Cozy Cabin Retreat",
+      "pricePerNight": 180,
+      "roomSize": "400 sq ft",
+      "availability": true,
+      "images": ["room5_img1.jpg", "room5_img2.jpg"],
+      "specialOffers": "Fireplace and complimentary snacks",
+      "reviews": [
+        {
+          "userid": "user101",
+          "rating": 4.2,
+          "comment": "Perfect for a weekend getaway"
+        }
+      ]
+    }
+  ]
