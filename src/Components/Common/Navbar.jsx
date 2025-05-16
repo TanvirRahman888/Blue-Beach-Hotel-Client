@@ -34,7 +34,7 @@ const Navbar = () => {
         <li><NavLink to={"/contact"}>Contact</NavLink></li>
     </>
     return (
-        <div className="navbar bg-gradient-to-r from-blue-400 to-blue-300">
+        <div className="navbar bg-gradient-to-r from-blue-400 to-blue-300 ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

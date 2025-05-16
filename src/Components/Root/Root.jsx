@@ -11,7 +11,7 @@ const Root = () => {
     };
 
     return (
-        <div className="px-[10%] mx-auto bg-gradient-to-r from-cyan-200  to-blue-100" onWheel={() => document.getElementById('my_modal_1').showModal()}>
+        <div className="px-[10%] mx-auto bg-[url(https://img.freepik.com/premium-vector/vector-soft-blue-gradient-abstract-background-illustration_901408-13082.jpg)] bg-cover dark:text-black" onWheel={() => document.getElementById('my_modal_1').showModal()}>
             {
                 modalShown && <dialog id="my_modal_1" className="modal">
                     <div className="modal-box">
